@@ -1,0 +1,25 @@
+class Product {
+  final String id;
+  final String name;
+  final String subName;
+  final String saleCount;
+  final String brandName;
+  final String categoryId;
+  final String? description;
+  final List<dynamic> sizes;
+  final List<dynamic> imageUrl;
+  final Map<String, dynamic> productDetails;
+
+  const Product({
+    required this.id,
+    required this.name,
+    required this.subName,
+    required this.imageUrl,
+    required this.saleCount,
+    required this.description,
+    required this.brandName,
+    required this.sizes,
+    required this.categoryId,
+    required this.productDetails,
+  });
+}
