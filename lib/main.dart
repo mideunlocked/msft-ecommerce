@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:msft/data/product_data.dart';
 
 void main() {
   runApp(const App());
@@ -25,8 +26,8 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Image.network(
-          "",
+        child: Image.asset(
+          products.first.imageUrl[0],
           height: 300,
           width: 300,
         ),

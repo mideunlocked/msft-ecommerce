@@ -12,19 +12,45 @@ dependencies:
 
   cupertino_icons: ^1.0.2
 
+  flutter_native_splash: ^2.3.1
+  flutter_launcher_icons: ^0.13.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
+
+
+flutter_native_splash:
+  color: "#ffffff"
+  image: assets/images/app/black_logo.png
+  color_dark: "#000000"
+  image_dark: assets/images/app/white_logo.png
+
+  android_12:
+    image: assets/images/app/black_logo.png
+    icon_background_color: "#ffffff"
+    image_dark: assets/images/app/white_logo.png
+    icon_background_color_dark: "#000000"
+
+  web: false
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/app/MSFT.png"
+  min_sdk_android: 21
 
 flutter:
 
   uses-material-design: true
 
   assets: 
+    - assets/images/shoes/nike air force 1/
     - assets/images/clothes/
     - assets/images/shoes/
     - assets/images/toys/
+    - assets/images/app/
 
   fonts:
     - family: Poppins
