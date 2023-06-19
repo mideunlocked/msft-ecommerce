@@ -1,6 +1,7 @@
 class Product {
   final String id;
   final String name;
+  final double rating;
   final String subName;
   final String saleCount;
   final String brandName;
@@ -13,6 +14,7 @@ class Product {
   const Product({
     required this.id,
     required this.name,
+    required this.rating,
     required this.subName,
     required this.imageUrl,
     required this.saleCount,

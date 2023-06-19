@@ -4,6 +4,7 @@ List<Product> products = [
   const Product(
     id: "1",
     name: "Nike Air Force 1 Low '07",
+    rating: 3.5,
     subName: "White",
     // Photo by HamZa NOUASRIA: https://www.pexels.com/photo/latest-air-nike-snicker-12628402/
     imageUrl: [
@@ -14,7 +15,7 @@ List<Product> products = [
     saleCount: "500",
     description:
         """The Nike Air Force 1 Low White ‘07 features an all-white leather upper with a perforated toe box and Swoosh overlays. A Nike heel embroidery and white sole completes the design.
-
+filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
 The Nike Air Force 1 Low White ‘07 originally released in 2007, but since it is an essential colorway to the brand, it consistently restocks.
 
 To shop all Nike Air Force 1 shoes, click here.""",
