@@ -1,12 +1,12 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:sizer/sizer.dart';
 
 import '../models/product.dart';
-import '../widgets/general_widget/back_button.dart';
+import '../widgets/general_widget/quantity_cart_widget.dart';
+import '../widgets/product_screen/product_app_bar.dart';
+import '../widgets/product_screen/product_screen_carousel.dart';
+import '../widgets/product_screen/rating_price_widget.dart';
 import '../widgets/product_tile/product_detail_widget.dart';
-import '../widgets/product_tile/product_tile_image.dart';
 
 class ProductScreen extends StatefulWidget {
   const ProductScreen({super.key, required this.data});
@@ -19,6 +19,16 @@ class ProductScreen extends StatefulWidget {
 
 class _ProductScreenState extends State<ProductScreen> {
   int currentIndex = 0;
+  String? initial;
+
+  int quantity = 1;
+
+  @override
+  void initState() {
+    super.initState();
+
+    initial = widget.data.sizes.first.toString();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,18 +50,10 @@ class _ProductScreenState extends State<ProductScreen> {
           padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 2.w),
           child: Column(
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  const CustomBackButton(),
-                  ProductFavouriteWidget(
-                    isFavourite: false,
-                    function: () {},
-                    color: Colors.black,
-                  )
-                ],
-              ),
+              // custom app bar
+              const ProductAppBar(),
+
+              // product screen details
               Expanded(
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 3.w),
@@ -60,76 +62,12 @@ class _ProductScreenState extends State<ProductScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         sizedBox2,
-                        CarouselSlider(
-                          items: data.imageUrl
-                              .map(
-                                (e) => Image.asset(
-                                  e.toString(),
-                                  fit: BoxFit.cover,
-                                ),
-                              )
-                              .toList(),
-                          options: CarouselOptions(
-                            height: 35.h,
-                            autoPlay: true,
-                            enlargeCenterPage: true,
-                            viewportFraction: 0.9,
-                            aspectRatio: 2.0,
-                            initialPage: 2,
-                            onPageChanged: (index, reason) {
-                              setState(() {
-                                currentIndex = index;
-                              });
-                            },
-                          ),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: data.imageUrl
-                              .asMap()
-                              .entries
-                              .map(
-                                (e) => Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Icon(
-                                    Icons.circle_rounded,
-                                    color: currentIndex == e.key
-                                        ? Colors.black
-                                        : Colors.grey,
-                                    size: 10.sp,
-                                  ),
-                                ),
-                              )
-                              .toList(),
+                        ProductScreenCarousel(
+                          imageUrl: data.imageUrl,
+                          currentIndex: currentIndex,
                         ),
                         sizedBox2,
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            RatingBar.builder(
-                              initialRating: data.rating,
-                              minRating: 1,
-                              direction: Axis.horizontal,
-                              allowHalfRating: true,
-                              itemCount: 5,
-                              itemSize: 17.sp,
-                              itemBuilder: (context, _) => const Icon(
-                                Icons.star,
-                                color: Colors.amber,
-                              ),
-                              onRatingUpdate: (rating) {
-                                print(rating);
-                              },
-                            ),
-                            Text(
-                              data.productDetails["Retail Price"],
-                              style: TextStyle(
-                                fontWeight: FontWeight.w500,
-                                fontSize: 16.sp,
-                              ),
-                            ),
-                          ],
-                        ),
+                        RatingPriceWidget(data: data),
                         sizedBox2,
                         Text(
                           data.name,
@@ -171,15 +109,76 @@ class _ProductScreenState extends State<ProductScreen> {
                         ),
                         sizedBox1,
                         Text(data.description ?? ""),
+                        sizedBox2,
+                        Text(
+                          "Size",
+                          style: titleStyle,
+                        ),
+                        sizedBox1,
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal: 2.w),
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.black,
+                              width: 0.5,
+                            ),
+                            borderRadius: BorderRadiusDirectional.circular(10),
+                          ),
+                          child: DropdownButton(
+                            value: initial,
+                            isExpanded: true,
+                            borderRadius: BorderRadius.circular(10),
+                            icon: const Icon(Icons.arrow_drop_down_rounded),
+                            underline: const SizedBox(),
+                            items: data.sizes
+                                .map(
+                                  (e) => DropdownMenuItem(
+                                    value: e,
+                                    child: Text(
+                                      e.toString(),
+                                    ),
+                                  ),
+                                )
+                                .toList(),
+                            onChanged: (value) {
+                              setState(() {
+                                initial = value.toString();
+                              });
+                            },
+                          ),
+                        ),
+                        sizedBox2,
                       ],
                     ),
                   ),
                 ),
+              ),
+
+              // quantity selector and add to cart button widget
+              QuantityCartWidget(
+                quantity: quantity,
+                addFunction: () => addQuantity(),
+                minusFunction: () => minusQuantity(),
+                addToCart: () {},
               ),
             ],
           ),
         ),
       ),
     );
+  }
+
+  void addQuantity() {
+    setState(() {
+      quantity++;
+    });
+  }
+
+  void minusQuantity() {
+    if (quantity > 1) {
+      setState(() {
+        quantity--;
+      });
+    }
   }
 }

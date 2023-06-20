@@ -4,7 +4,6 @@ class Product {
   final double rating;
   final String subName;
   final String saleCount;
-  // final String brandName;
   final String categoryId;
   final String? description;
   final List<dynamic> sizes;
@@ -19,7 +18,6 @@ class Product {
     required this.imageUrl,
     required this.saleCount,
     required this.description,
-    // required this.brandName,
     required this.sizes,
     required this.categoryId,
     required this.productDetails,

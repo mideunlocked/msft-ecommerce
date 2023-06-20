@@ -5,12 +5,11 @@ import 'package:sizer/sizer.dart';
 
 import '../../models/product.dart';
 import '../../screens/product_screen.dart';
+import '../general_widget/quantity_cart_widget.dart';
 import 'carousel_image_widget.dart';
-import 'preview_add_cart_widget.dart';
 import 'product_detail_widget.dart';
 import 'product_tile_detail.dart';
 import 'product_tile_image.dart';
-import 'quantity_widget.dart';
 
 class ProductPreviewWidget extends StatefulWidget {
   const ProductPreviewWidget({
@@ -104,19 +103,11 @@ class _ProductPreviewWidgetState extends State<ProductPreviewWidget> {
                               ),
 
                               // product add/minus quantity and add to cart widget
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  QuantityWidget(
-                                    quantity: quantity,
-                                    addFunction: () => addQuantity(),
-                                    minusFunction: () => minusQuantity(),
-                                  ),
-                                  PreviewAddCartWidget(
-                                    function: () {},
-                                  ),
-                                ],
+                              QuantityCartWidget(
+                                quantity: quantity,
+                                addFunction: () => addQuantity(),
+                                minusFunction: () => minusQuantity(),
+                                addToCart: () {},
                               ),
                             ],
                           ),
