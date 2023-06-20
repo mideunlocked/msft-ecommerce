@@ -1,153 +1,61 @@
 import 'package:flutter/material.dart';
-import 'package:msft/data/category_data.dart';
+import 'package:msft/screens/bottom_nav_screens/cart_screen.dart';
+import 'package:msft/screens/bottom_nav_screens/categories_screen.dart';
+import 'package:msft/screens/bottom_nav_screens/fits_screen.dart';
+import 'package:msft/screens/bottom_nav_screens/profile_screen.dart';
 import 'package:sizer/sizer.dart';
 
-import '../data/product_data.dart';
-import '../widgets/product_tile/product_tile.dart';
+import '../widgets/bottom_nav_widget/bottom_nav_icon.dart';
+import 'bottom_nav_screens/shop_screen.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({
     super.key,
   });
 
   @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  int currentIndex = 0;
+
+  final pageController = PageController(
+    initialPage: 0,
+  );
+
+  @override
+  void dispose() {
+    super.dispose();
+
+    pageController.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const TitleSubtitleWidget(
-                  title: "Categories",
-                  subtitle:
-                      "Explore our wide range of categories and discover something new.",
-                ),
-                SizedBox(
-                  height: 18.h,
-                  width: 100.w,
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                        children: categories
-                            .map(
-                              (e) => CategoryTile(
-                                title: e.categoryName,
-                                imageUrl: e.categoryImageUrl ?? "",
-                              ),
-                            )
-                            .toList()),
-                  ),
-                ),
-                SizedBox(
-                  height: 1.h,
-                ),
-                const TitleSubtitleWidget(
-                  title: "Trending 🔥",
-                  subtitle:
-                      "Trending products are a curated collections of our best selling items",
-                ),
-                GridView(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    mainAxisSpacing: 5.sp,
-                    crossAxisSpacing: 8.sp,
-                    mainAxisExtent: 45.h,
-                  ),
-                  children: products
-                      .map(
-                        (data) => ProductTile(data: data),
-                      )
-                      .toList(),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class TitleSubtitleWidget extends StatelessWidget {
-  const TitleSubtitleWidget({
-    super.key,
-    required this.title,
-    required this.subtitle,
-  });
-
-  final String title, subtitle;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(
-        left: 1.w,
-        right: 20.w,
-        bottom: 1.h,
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            title,
-            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  fontSize: 20.sp,
-                ),
-          ),
-          Text(
-            subtitle,
-            style: TextStyle(
-              color: Colors.black38,
-              fontSize: 8.sp,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class CategoryTile extends StatelessWidget {
-  const CategoryTile({
-    super.key,
-    required this.title,
-    required this.imageUrl,
-  });
-
-  final String title;
-  final String imageUrl;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(
-        horizontal: 1.w,
-      ),
-      child: Stack(
+      body: Stack(
         alignment: Alignment.bottomCenter,
         children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(20),
-            child: Image.network(
-              imageUrl,
-              fit: BoxFit.cover,
-              height: 15.h,
-              width: 30.w,
-            ),
+          // home screen pages with page view
+          PageView(
+            controller: pageController,
+            onPageChanged: (index) => setState(() {
+              currentIndex = index;
+            }),
+            children: pages,
           ),
+
+          // custom bottom nav
           Container(
-            height: 15.h,
-            width: 30.w,
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              gradient: const LinearGradient(
+            height: 7.h,
+            width: 100.w,
+            padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 2.2.h),
+            alignment: Alignment.centerLeft,
+            decoration: const BoxDecoration(
+              color: Colors.black,
+              gradient: LinearGradient(
                 begin: Alignment.bottomCenter,
                 end: Alignment.topCenter,
                 colors: [
@@ -156,14 +64,36 @@ class CategoryTile extends StatelessWidget {
                 ],
               ),
             ),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(vertical: 1.h),
-            child: Text(
-              title,
-              style: const TextStyle(
-                color: Colors.white,
-              ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                BottomNavIcon(
+                  currentIndex: currentIndex,
+                  index: 0,
+                  iconUrl: "assets/icons/clothes-hanger.png",
+                ),
+                BottomNavIcon(
+                  currentIndex: currentIndex,
+                  index: 1,
+                  iconUrl: "assets/icons/category.png",
+                ),
+                BottomNavIcon(
+                  currentIndex: currentIndex,
+                  index: 2,
+                  iconUrl: "assets/icons/movie.png",
+                ),
+                BottomNavIcon(
+                  currentIndex: currentIndex,
+                  index: 3,
+                  iconUrl: "assets/icons/shopping-cart.png",
+                ),
+                BottomNavIcon(
+                  currentIndex: currentIndex,
+                  index: 4,
+                  iconUrl: "assets/icons/user.png",
+                ),
+              ],
             ),
           ),
         ],
@@ -171,3 +101,11 @@ class CategoryTile extends StatelessWidget {
     );
   }
 }
+
+List<Widget> pages = [
+  const ShopScreen(),
+  const CategoriesScreen(),
+  const FitsScreen(),
+  const CartScreen(),
+  const ProfileScreen(),
+];
