@@ -41,7 +41,10 @@ class ProductTile extends StatelessWidget {
               imageUrl: data.imageUrl[0],
             ),
             // product preview data
-            ProductTileDetail(data: data),
+            ProductTileDetail(
+              data: data,
+              quantity: 1,
+            ),
             // a little spacing on the bottom to balance the widget alignment
             SizedBox(
               height: 1.h,

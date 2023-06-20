@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:msft/widgets/product_screen/price_cart_widget.dart';
 import 'package:sizer/sizer.dart';
 
 import '../models/product.dart';
-import '../widgets/general_widget/quantity_cart_widget.dart';
 import '../widgets/product_screen/product_app_bar.dart';
 import '../widgets/product_screen/product_screen_carousel.dart';
-import '../widgets/product_screen/rating_price_widget.dart';
+import '../widgets/product_screen/rating_quantity_widget.dart';
 import '../widgets/product_tile/product_detail_widget.dart';
 
 class ProductScreen extends StatefulWidget {
@@ -20,6 +20,7 @@ class ProductScreen extends StatefulWidget {
 class _ProductScreenState extends State<ProductScreen> {
   int currentIndex = 0;
   String? initial;
+  int? totalPrice;
 
   int quantity = 1;
 
@@ -28,6 +29,7 @@ class _ProductScreenState extends State<ProductScreen> {
     super.initState();
 
     initial = widget.data.sizes.first.toString();
+    totalPrice = int.parse(widget.data.productDetails["Retail Price"]);
   }
 
   @override
@@ -67,7 +69,12 @@ class _ProductScreenState extends State<ProductScreen> {
                           currentIndex: currentIndex,
                         ),
                         sizedBox2,
-                        RatingPriceWidget(data: data),
+                        RatingQuantityWidget(
+                          data: data,
+                          quantity: quantity,
+                          addFunction: () => addQuantity(),
+                          minusFunction: () => minusQuantity(),
+                        ),
                         sizedBox2,
                         Text(
                           data.name,
@@ -155,11 +162,10 @@ class _ProductScreenState extends State<ProductScreen> {
               ),
 
               // quantity selector and add to cart button widget
-              QuantityCartWidget(
-                quantity: quantity,
-                addFunction: () => addQuantity(),
-                minusFunction: () => minusQuantity(),
+              PriceCartWidget(
                 addToCart: () {},
+                totalPrice: totalPrice ?? 0,
+                quantity: quantity,
               ),
             ],
           ),

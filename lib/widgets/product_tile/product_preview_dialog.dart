@@ -5,7 +5,7 @@ import 'package:sizer/sizer.dart';
 
 import '../../models/product.dart';
 import '../../screens/product_screen.dart';
-import '../general_widget/quantity_cart_widget.dart';
+import 'preview_quantity_cart_widget.dart';
 import 'carousel_image_widget.dart';
 import 'product_detail_widget.dart';
 import 'product_tile_detail.dart';
@@ -76,12 +76,13 @@ class _ProductPreviewWidgetState extends State<ProductPreviewWidget> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               // product first detail preview
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                              Stack(
+                                alignment: Alignment.centerRight,
                                 children: [
-                                  ProductTileDetail(data: widget.data),
+                                  ProductTileDetail(
+                                    data: widget.data,
+                                    quantity: quantity,
+                                  ),
                                   ProductFavouriteWidget(
                                     color: Colors.black,
                                     isFavourite: false,
@@ -103,7 +104,7 @@ class _ProductPreviewWidgetState extends State<ProductPreviewWidget> {
                               ),
 
                               // product add/minus quantity and add to cart widget
-                              QuantityCartWidget(
+                              PreviewQuantityCartWidget(
                                 quantity: quantity,
                                 addFunction: () => addQuantity(),
                                 minusFunction: () => minusQuantity(),

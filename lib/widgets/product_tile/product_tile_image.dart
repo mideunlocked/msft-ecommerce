@@ -26,7 +26,7 @@ class _ProuctTileImageState extends State<ProuctTileImage> {
             topLeft: Radius.circular(20),
             topRight: Radius.circular(20),
           ),
-          child: Image.asset(
+          child: Image.network(
             widget.imageUrl,
             height: 25.h,
             width: 100.w,

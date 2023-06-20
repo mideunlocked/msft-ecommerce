@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:msft/data/product_data.dart';
 import 'package:sizer/sizer.dart';
 
-import 'widgets/product_tile/product_tile.dart';
+import 'screens/home_screen.dart';
 
 void main() {
   runApp(const App());
@@ -31,34 +30,6 @@ class App extends StatelessWidget {
           ),
         ),
         home: const HomeScreen(),
-      ),
-    );
-  }
-}
-
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    var data = products.first;
-
-    return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: GridView.builder(
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              mainAxisSpacing: 5.sp,
-              crossAxisSpacing: 8.sp,
-              mainAxisExtent: 45.h,
-            ),
-            itemBuilder: (ctx, index) => ProductTile(data: data),
-          ),
-        ),
       ),
     );
   }

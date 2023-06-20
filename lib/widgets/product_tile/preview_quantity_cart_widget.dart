@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../product_tile/preview_add_cart_widget.dart';
-import '../product_tile/quantity_widget.dart';
+import 'preview_add_cart_widget.dart';
+import 'quantity_widget.dart';
 
-class QuantityCartWidget extends StatelessWidget {
-  const QuantityCartWidget({
+class PreviewQuantityCartWidget extends StatelessWidget {
+  const PreviewQuantityCartWidget({
     super.key,
     required this.quantity,
     required this.addFunction,

@@ -25,7 +25,7 @@ class _ProductScreenCarouselState extends State<ProductScreenCarousel> {
         CarouselSlider(
           items: widget.imageUrl
               .map(
-                (e) => Image.asset(
+                (e) => Image.network(
                   e.toString(),
                   fit: BoxFit.cover,
                 ),
@@ -44,6 +44,9 @@ class _ProductScreenCarouselState extends State<ProductScreenCarousel> {
               });
             },
           ),
+        ),
+        SizedBox(
+          height: 1.h,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,

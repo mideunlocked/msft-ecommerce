@@ -15,7 +15,7 @@ class CarouselImageWidget extends StatelessWidget {
     return CarouselSlider(
       items: imageUrl
           .map(
-            (e) => Image.asset(
+            (e) => Image.network(
               e.toString(),
               fit: BoxFit.fitWidth,
             ),

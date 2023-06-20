@@ -49,16 +49,15 @@ flutter:
   uses-material-design: true
 
   assets: 
-    - assets/images/shoes/nike air force 1/
-    - assets/images/clothes/
-    - assets/images/shoes/
-    - assets/images/toys/
     - assets/images/app/
 
   fonts:
     - family: Poppins
       fonts:
         - asset: assets/fonts/poppins/Poppins-Regular.ttf
+        - asset: assets/fonts/poppins/Poppins-ExtraBoldItalic.ttf
+          weight: 900
+          style: italic
         - asset: assets/fonts/poppins/Poppins-ExtraBold.ttf
           weight: 900
         - asset: assets/fonts/poppins/Poppins-Bold.ttf
