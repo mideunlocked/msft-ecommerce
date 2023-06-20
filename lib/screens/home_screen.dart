@@ -69,26 +69,31 @@ class _HomeScreenState extends State<HomeScreen> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 BottomNavIcon(
+                  pageController: pageController,
                   currentIndex: currentIndex,
                   index: 0,
                   iconUrl: "assets/icons/clothes-hanger.png",
                 ),
                 BottomNavIcon(
+                  pageController: pageController,
                   currentIndex: currentIndex,
                   index: 1,
                   iconUrl: "assets/icons/category.png",
                 ),
                 BottomNavIcon(
+                  pageController: pageController,
                   currentIndex: currentIndex,
                   index: 2,
                   iconUrl: "assets/icons/movie.png",
                 ),
                 BottomNavIcon(
+                  pageController: pageController,
                   currentIndex: currentIndex,
                   index: 3,
                   iconUrl: "assets/icons/shopping-cart.png",
                 ),
                 BottomNavIcon(
+                  pageController: pageController,
                   currentIndex: currentIndex,
                   index: 4,
                   iconUrl: "assets/icons/user.png",
