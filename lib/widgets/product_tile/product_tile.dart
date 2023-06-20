@@ -28,9 +28,9 @@ class ProductTile extends StatelessWidget {
       ),
       onLongPress: () => showProductEnlargeedPreview(context),
       child: Card(
-        elevation: 10.0,
+        elevation: 2.0,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30),
+          borderRadius: BorderRadius.circular(20),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

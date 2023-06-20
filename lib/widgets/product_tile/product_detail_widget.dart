@@ -18,7 +18,7 @@ class ProductDetailWidget extends StatelessWidget {
       children: [
         Text("$keyString "),
         SizedBox(
-          width: 35.w,
+          width: 50.w,
           child: Text(
             value,
             textAlign: TextAlign.right,

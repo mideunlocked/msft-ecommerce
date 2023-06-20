@@ -46,14 +46,19 @@ class HomeScreen extends StatelessWidget {
     var data = products.first;
 
     return Scaffold(
-      body: GridView.builder(
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          mainAxisSpacing: 5.sp,
-          crossAxisSpacing: 2.sp,
-          mainAxisExtent: 45.h,
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: GridView.builder(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              mainAxisSpacing: 5.sp,
+              crossAxisSpacing: 8.sp,
+              mainAxisExtent: 45.h,
+            ),
+            itemBuilder: (ctx, index) => ProductTile(data: data),
+          ),
         ),
-        itemBuilder: (ctx, index) => ProductTile(data: data),
       ),
     );
   }

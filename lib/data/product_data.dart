@@ -17,17 +17,17 @@ List<Product> products = [
         """The Nike Air Force 1 Low White ‘07 features an all-white leather upper with a perforated toe box and Swoosh overlays. A Nike heel embroidery and white sole completes the design.
 filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
 The Nike Air Force 1 Low White ‘07 originally released in 2007, but since it is an essential colorway to the brand, it consistently restocks.
+""",
 
-To shop all Nike Air Force 1 shoes, click here.""",
-    brandName: "Nike",
     sizes: ["38", "39", "40", "41", "42", "43", "44", "45"],
     categoryId: "1",
     productDetails: {
+      "Brand": "Nike",
       "Style": "315122-111/CW2288-111",
       "Colorway": "WHITE/WHITE",
       "Retail Price": "\$110",
       "Release Date": "11/24/2007",
-      "Included Accessories": "2X AF1 BRANDED LACE DUBRAE (ATTACHED)"
+      "Included Accessories": "2X AF1 BRANDED LACE"
     },
   ),
 ];

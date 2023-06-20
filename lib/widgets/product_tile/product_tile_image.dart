@@ -23,8 +23,8 @@ class _ProuctTileImageState extends State<ProuctTileImage> {
       children: [
         ClipRRect(
           borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(30),
-            topRight: Radius.circular(30),
+            topLeft: Radius.circular(20),
+            topRight: Radius.circular(20),
           ),
           child: Image.asset(
             widget.imageUrl,
