@@ -3,6 +3,7 @@ import 'package:sizer/sizer.dart';
 
 import '../../data/category_data.dart';
 import '../../data/product_data.dart';
+import '../../widgets/general_widget/msft_logo_image.dart';
 import '../../widgets/product_tile/product_tile.dart';
 import '../../widgets/shop_widget.dart/category_tile.dart';
 import '../../widgets/shop_widget.dart/shop_banner.dart';
@@ -24,17 +25,9 @@ class ShopScreen extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                children: [
-                  Image.asset(
-                    "assets/images/app/black_logo.png",
-                    fit: BoxFit.cover,
-                    height: 5.h,
-                    width: 30.w,
-                  ),
-                ],
-              ),
+              const MsftLogoImage(),
               Expanded(
                 child: SingleChildScrollView(
                   child: Column(

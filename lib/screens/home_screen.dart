@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:msft/screens/bottom_nav_screens/cart_screen.dart';
-import 'package:msft/screens/bottom_nav_screens/categories_screen.dart';
-import 'package:msft/screens/bottom_nav_screens/fits_screen.dart';
-import 'package:msft/screens/bottom_nav_screens/profile_screen.dart';
-import 'package:sizer/sizer.dart';
 
-import '../widgets/bottom_nav_widget/bottom_nav_icon.dart';
+import '../widgets/bottom_nav_widget/bottom_nav_widget.dart';
+import 'bottom_nav_screens/cart_screen.dart';
+import 'bottom_nav_screens/categories_screen.dart';
+import 'bottom_nav_screens/fits_screen.dart';
+import 'bottom_nav_screens/profile_screen.dart';
 import 'bottom_nav_screens/shop_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -48,59 +47,8 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
 
           // custom bottom nav
-          Container(
-            height: 7.h,
-            width: 100.w,
-            padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 2.2.h),
-            alignment: Alignment.centerLeft,
-            decoration: const BoxDecoration(
-              color: Colors.black,
-              gradient: LinearGradient(
-                begin: Alignment.bottomCenter,
-                end: Alignment.topCenter,
-                colors: [
-                  Colors.black,
-                  Colors.transparent,
-                ],
-              ),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                BottomNavIcon(
-                  pageController: pageController,
-                  currentIndex: currentIndex,
-                  index: 0,
-                  iconUrl: "assets/icons/clothes-hanger.png",
-                ),
-                BottomNavIcon(
-                  pageController: pageController,
-                  currentIndex: currentIndex,
-                  index: 1,
-                  iconUrl: "assets/icons/category.png",
-                ),
-                BottomNavIcon(
-                  pageController: pageController,
-                  currentIndex: currentIndex,
-                  index: 2,
-                  iconUrl: "assets/icons/movie.png",
-                ),
-                BottomNavIcon(
-                  pageController: pageController,
-                  currentIndex: currentIndex,
-                  index: 3,
-                  iconUrl: "assets/icons/shopping-cart.png",
-                ),
-                BottomNavIcon(
-                  pageController: pageController,
-                  currentIndex: currentIndex,
-                  index: 4,
-                  iconUrl: "assets/icons/user.png",
-                ),
-              ],
-            ),
-          ),
+          BottomNavWidget(
+              pageController: pageController, currentIndex: currentIndex),
         ],
       ),
     );

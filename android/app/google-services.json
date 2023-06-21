@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "866221240786",
+    "project_id": "msft-portfolio",
+    "storage_bucket": "msft-portfolio.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:866221240786:android:21bf3eba9077c145f5980b",
+        "android_client_info": {
+          "package_name": "com.example.msft"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "866221240786-phpsr1vvv2mmrg5eneg1bfof2l9cq670.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCtsePmxVEHRKoDnS5RkbzZ9JtkeJPkWVQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "866221240786-phpsr1vvv2mmrg5eneg1bfof2l9cq670.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

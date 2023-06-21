@@ -18,6 +18,14 @@ dependencies:
   carousel_slider: ^4.2.1
   flutter_rating_bar: ^4.0.1
 
+  # state management
+  provider: ^6.0.5
+
+  # firebase packages
+  firebase_auth: ^4.6.3
+  firebase_core: ^2.14.0
+  cloud_firestore: ^4.8.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
