@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 
 class CustomBackButton extends StatelessWidget {
   const CustomBackButton({
@@ -7,12 +8,19 @@ class CustomBackButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return IconButton(
-      onPressed: () {
+    return InkWell(
+      onTap: () {
         Navigator.pop(context);
       },
-      icon: const Icon(
-        Icons.arrow_back_ios_new_rounded,
+      child: Container(
+        padding: EdgeInsets.all(5.sp),
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: Colors.white60,
+        ),
+        child: const Icon(
+          Icons.arrow_back_ios_new_rounded,
+        ),
       ),
     );
   }

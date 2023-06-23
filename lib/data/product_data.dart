@@ -17,7 +17,7 @@ List<Product> products = const [
 filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
 The Nike Air Force 1 Low White ‘07 originally released in 2007, but since it is an essential colorway to the brand, it consistently restocks.""",
     sizes: ["38", "39", "40", "41", "42", "43", "44", "45"],
-    categoryId: "1",
+    categoryId: "4",
     productDetails: {
       "Brand": "Nike",
       "Style": "315122-111/CW2288-111",
@@ -60,7 +60,7 @@ The Nike Air Force 1 Low White ‘07 originally released in 2007, but since it i
     saleCount: "5",
     description: """""",
     sizes: ["S", "M", "L", "XL", "XXL"],
-    categoryId: "1",
+    categoryId: "2",
     productDetails: {
       "Season": "SS21",
       "Color": "Blue/Black",
@@ -87,7 +87,7 @@ This set includes a classic Tech Fleece hoodie and jogger pants. The tri-layer f
 
 The Nike Tech Fleece Full Zip Hoodie Joggers Set Black debuted on January 15th, 2022 and retailed for \$240.""",
     sizes: ["S", "M", "L", "XL", "XXL"],
-    categoryId: "1",
+    categoryId: "3",
     productDetails: {
       "Color": "BLACK",
       "Style": "CU4489-010 / CU4495-010",
@@ -106,7 +106,7 @@ The Nike Tech Fleece Full Zip Hoodie Joggers Set Black debuted on January 15th, 
     description:
         """A new brand for the coming-of-age generation that refuses to compromise on principle or style, Collusion believes clothes that celebrate self-expression and inclusivity should be the norm. It’s no surprise then that it’s linked up with six inspirational creatives to shape its first collection, which includes denim, knitwear, dresses and loads more.""",
     sizes: ["S", "M", "L"],
-    categoryId: "1",
+    categoryId: "5",
     productDetails: {
       "Color": "Purple",
       "Via": "Exclusive to ASOS",
@@ -130,7 +130,7 @@ The Nike Tech Fleece Full Zip Hoodie Joggers Set Black debuted on January 15th, 
     description:
         """After releasing his final collaborative apparel collection with Uniqlo's UT line in June of 2019, KAWS returned just over one month later for the Japan installment of his KAWS Holiday series. The event and collection took to the theme of Mt. Fuji, staging campsites in Japan and releasing an array of Holiday and Mt. Fuji inspired collectibles. Released as a part of the event was the latest installment of KAWS Vinyl figures depicting a companion laying on the ground in what looks to be a very relaxing position. The KAWS HOLIDAY JAPAN Vinyl Figure released on July 18th, 2019 and retailed for \$200 USD.""",
     sizes: ["9.5 inch"],
-    categoryId: "1",
+    categoryId: "6",
     productDetails: {
       "Color": "BROWN",
       "Release Date": "07/18/2019",

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:msft/screens/search_screen.dart';
 import 'package:msft/widgets/general_widget/msft_logo_image.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../data/category_data.dart';
+import 'category_item_screen.dart';
 
 class CategoriesScreen extends StatelessWidget {
   const CategoriesScreen({super.key});
@@ -19,9 +21,26 @@ class CategoriesScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const MsftLogoImage(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const MsftLogoImage(),
+                IconButton(
+                  onPressed: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (ctx) => const SearchScreen(),
+                    ),
+                  ),
+                  icon: const Icon(
+                    Icons.search_rounded,
+                  ),
+                )
+              ],
+            ),
             SizedBox(
-              height: 0.5.h,
+              height: 1.h,
             ),
             Text(
               "Categories",
@@ -39,33 +58,35 @@ class CategoriesScreen extends StatelessWidget {
             SizedBox(
               height: 5.h,
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: categories.map(
-                (e) {
-                  return Padding(
-                    padding: EdgeInsets.symmetric(vertical: 1.h),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Image.asset(
-                          e.categoryIcon!,
-                          height: 20.sp,
-                          width: 20.sp,
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: categories.map(
+                  (e) {
+                    return Padding(
+                      padding: EdgeInsets.symmetric(vertical: 2.h),
+                      child: InkWell(
+                        onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (ctx) => CategoryItemScreen(
+                              categoryName: e.categoryName,
+                              id: e.id,
+                            ),
+                          ),
                         ),
-                        SizedBox(
-                          width: 5.w,
-                        ),
-                        Text(
+                        child: Text(
                           e.categoryName,
-                          style:
-                              bodyLarge?.copyWith(fontWeight: FontWeight.w500),
+                          style: bodyLarge?.copyWith(
+                            fontWeight: FontWeight.w500,
+                            color: Colors.black87,
+                          ),
                         ),
-                      ],
-                    ),
-                  );
-                },
-              ).toList(),
+                      ),
+                    );
+                  },
+                ).toList(),
+              ),
             ),
           ],
         ),
