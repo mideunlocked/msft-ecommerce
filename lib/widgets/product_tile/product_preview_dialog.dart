@@ -26,6 +26,14 @@ class ProductPreviewWidget extends StatefulWidget {
 class _ProductPreviewWidgetState extends State<ProductPreviewWidget> {
   int quantity = 1;
 
+  String tweet = "This is a tweet";
+
+  void updateString() {
+    List<String> tweetList = tweet.split(" ");
+
+    tweetList[0] = "A";
+  }
+
   @override
   Widget build(BuildContext context) {
     return Dialog(

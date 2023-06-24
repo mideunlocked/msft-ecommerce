@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../widgets/bottom_nav_widget/bottom_nav_widget.dart';
 import 'bottom_nav_screens/cart_screen.dart';
 import 'bottom_nav_screens/categories_screen.dart';
-import 'bottom_nav_screens/fits_screen.dart';
+// import 'bottom_nav_screens/fits_screen.dart';
 import 'bottom_nav_screens/profile_screen.dart';
 import 'bottom_nav_screens/shop_screen.dart';
 
@@ -58,7 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
 List<Widget> pages = [
   const ShopScreen(),
   const CategoriesScreen(),
-  const FitsScreen(),
+  // const FitsScreen(),
   const CartScreen(),
   const ProfileScreen(),
 ];

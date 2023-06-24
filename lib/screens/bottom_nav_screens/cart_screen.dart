@@ -1,16 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:msft/data/cart_data.dart';
-import 'package:msft/models/cart_items.dart';
-import 'package:msft/models/product.dart';
 import 'package:sizer/sizer.dart';
 
-class CartScreen extends StatelessWidget {
+import '../../data/cart_data.dart';
+import '../../models/cart_items.dart';
+import '../../widgets/cart/cart_tile.dart';
+import '../../widgets/cart/total_p_checkout.dart';
+
+class CartScreen extends StatefulWidget {
   const CartScreen({super.key});
 
   @override
+  State<CartScreen> createState() => _CartScreenState();
+}
+
+class _CartScreenState extends State<CartScreen> {
+  String totalPrice = "0";
+
+  @override
+  void initState() {
+    super.initState();
+
+    totalPrice = getCartTotalPrice();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    var first2 = cart.items.first;
-    var product2 = first2.product;
     var of = Theme.of(context);
     var textTheme = of.textTheme;
     var bodyLarge = textTheme.bodyLarge;
@@ -31,7 +45,7 @@ class CartScreen extends StatelessWidget {
               ),
             ),
             Text(
-              "${first2.quantity} products",
+              "${cart.itemCount} product(s)",
               style: textTheme.bodyLarge?.copyWith(
                 fontWeight: FontWeight.w500,
               ),
@@ -39,122 +53,37 @@ class CartScreen extends StatelessWidget {
             SizedBox(
               height: 1.h,
             ),
-            CartTile(product2: product2, first2: first2),
-            CartTile(product2: product2, first2: first2),
-            CartTile(product2: product2, first2: first2),
-            CartTile(product2: product2, first2: first2),
-            const Spacer(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text("Total:"),
-                    Text(
-                      "\$1000",
-                      style: bodyLarge,
-                    ),
-                  ],
-                ),
-                FloatingActionButton.extended(
-                  backgroundColor: Colors.black,
-                  onPressed: () {},
-                  label: Padding(
-                    padding: EdgeInsets.symmetric(
-                      vertical: 8.0,
-                      horizontal: 5.w,
-                    ),
-                    child: const Text("Checkout"),
-                  ),
-                ),
-              ],
-            )
+            Expanded(
+              child: Column(
+                children: cart.items
+                    .map((e) => CartTile(
+                          product: e.product,
+                          quantity: e.quantity.toString(),
+                          totalPrice: e.totalPrice,
+                        ))
+                    .toList(),
+              ),
+            ),
+            TotalPriceCheckoutWidget(
+                totalPrice: totalPrice, bodyLarge: bodyLarge),
+            SizedBox(
+              height: 7.h,
+            ),
           ],
         ),
       ),
     );
   }
-}
 
-class CartTile extends StatelessWidget {
-  const CartTile({
-    super.key,
-    required this.product2,
-    required this.first2,
-  });
+  String getCartTotalPrice() {
+    int? totalPrice;
+    CartItem? item;
+    List<CartItem> cartItems = cart.items;
 
-  final Product product2;
-  final CartItem first2;
+    for (item in cartItems) {
+      totalPrice = totalPrice ?? 0 + int.parse(item.totalPrice);
+    }
 
-  @override
-  Widget build(BuildContext context) {
-    var of = Theme.of(context);
-    var textTheme = of.textTheme;
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: 2.h),
-      child: SizedBox(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(10),
-              child: Image.network(
-                product2.imageUrl[0],
-                height: 10.h,
-                width: 20.w,
-                fit: BoxFit.cover,
-              ),
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  product2.name,
-                  maxLines: 2,
-                  softWrap: true,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    fontSize: 12.sp,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                Text(
-                  product2.subName,
-                  style: const TextStyle(
-                    color: Colors.black26,
-                  ),
-                ),
-                Text(
-                  "${first2.quantity} x ${product2.productDetails["Retail Price"]}",
-                  style: textTheme.bodyLarge?.copyWith(
-                    fontSize: 12.sp,
-                  ),
-                ),
-              ],
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                const Icon(
-                  Icons.delete_rounded,
-                  color: Colors.black45,
-                ),
-                SizedBox(
-                  height: 3.h,
-                ),
-                Text(
-                  "\$${first2.totalPrice}",
-                  style: textTheme.bodyLarge?.copyWith(
-                    fontSize: 12.sp,
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
+    return totalPrice.toString();
   }
 }

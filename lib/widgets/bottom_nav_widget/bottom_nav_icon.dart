@@ -21,9 +21,9 @@ class BottomNavIcon extends StatelessWidget {
       onTap: () => changePage(index, context),
       child: Image.asset(
         iconUrl,
-        color: currentIndex == index ? Colors.white : Colors.white60,
+        color: currentIndex == index ? Colors.black : Colors.grey,
         height: 5.h,
-        width: 5.h,
+        width: 5.w,
       ),
     );
   }
