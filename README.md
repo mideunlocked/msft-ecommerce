@@ -13,7 +13,7 @@ This is a Flutter e-commerce application. The project aims to provide a user-fri
 
 ## Installation
 
-1. Clone the repository: `git clone https://github.com/your-username/your-repo.git`
+1. Clone the repository: `git clone https://github.com/mideunlocked/msft-ecommerce`
 2. Navigate to the project directory: `cd your repo
 3. Install dependencies: `flutter pub get`
 4. Run the app: `flutter run`
