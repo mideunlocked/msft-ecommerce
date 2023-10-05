@@ -17,9 +17,9 @@ class BottomNavIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => changePage(index, context),
-      child: Image.asset(
+    return IconButton(
+      onPressed: () => changePage(index, context),
+      icon: Image.asset(
         iconUrl,
         color: currentIndex == index ? Colors.black : Colors.grey,
         height: 5.h,

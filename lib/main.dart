@@ -1,11 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:msft/data/product_data.dart';
 import 'package:sizer/sizer.dart';
 
 import 'screens/home_screen.dart';
 import 'firebase_options.dart';
-import 'widgets/product_tile/product_preview_dialog.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,15 +12,6 @@ void main() async {
   );
 
   runApp(const App());
-}
-
-void showProductEnlargeedPreview(BuildContext context) {
-  showDialog(
-    context: context,
-    builder: (ctx) => ProductPreviewWidget(
-      data: products.first,
-    ),
-  );
 }
 
 class App extends StatelessWidget {

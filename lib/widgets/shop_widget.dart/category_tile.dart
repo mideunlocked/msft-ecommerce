@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:msft/screens/bottom_nav_screens/category_item_screen.dart';
 import 'package:sizer/sizer.dart';
 
 class CategoryTile extends StatelessWidget {
@@ -6,8 +7,10 @@ class CategoryTile extends StatelessWidget {
     super.key,
     required this.title,
     required this.imageUrl,
+    required this.catId,
   });
 
+  final String catId;
   final String title;
   final String imageUrl;
 
@@ -17,44 +20,55 @@ class CategoryTile extends StatelessWidget {
       padding: EdgeInsets.symmetric(
         horizontal: 1.w,
       ),
-      child: Stack(
-        alignment: Alignment.bottomCenter,
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(20),
-            child: Image.network(
-              imageUrl,
-              fit: BoxFit.cover,
-              height: 15.h,
-              width: 30.w,
+      child: InkWell(
+        onTap: () => Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (ctx) => CategoryItemScreen(
+              categoryName: title,
+              id: catId,
             ),
           ),
-          Container(
-            height: 15.h,
-            width: 30.w,
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
+        ),
+        child: Stack(
+          alignment: Alignment.bottomCenter,
+          children: [
+            ClipRRect(
               borderRadius: BorderRadius.circular(20),
-              gradient: const LinearGradient(
-                begin: Alignment.bottomCenter,
-                end: Alignment.topCenter,
-                colors: [
-                  Colors.black,
-                  Colors.transparent,
-                ],
+              child: Image.network(
+                imageUrl,
+                fit: BoxFit.cover,
+                height: 18.h,
+                width: 30.w,
               ),
             ),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(vertical: 1.h),
-            child: Text(
-              title,
-              style: const TextStyle(
-                color: Colors.white,
+            Container(
+              height: 18.h,
+              width: 30.w,
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                gradient: const LinearGradient(
+                  begin: Alignment.bottomCenter,
+                  end: Alignment.topCenter,
+                  colors: [
+                    Colors.black,
+                    Colors.transparent,
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 1.h),
+              child: Text(
+                title,
+                style: const TextStyle(
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

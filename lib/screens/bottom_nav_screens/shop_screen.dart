@@ -10,61 +10,76 @@ import '../../widgets/shop_widget.dart/shop_banner.dart';
 import '../../widgets/shop_widget.dart/title_subtitle_widget.dart';
 
 class ShopScreen extends StatelessWidget {
-  const ShopScreen({super.key});
+  const ShopScreen({
+    super.key,
+    required this.scrollController,
+  });
+
+  final ScrollController scrollController;
 
   @override
   Widget build(BuildContext context) {
     var of = Theme.of(context);
     var textTheme = of.textTheme;
     var sizedBox = SizedBox(
+      height: 3.h,
+    );
+    var smallSizedBox = SizedBox(
       height: 1.h,
     );
 
     return Scaffold(
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const MsftLogoImage(),
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      sizedBox,
-                      MSFTBanner(textTheme: textTheme),
-                      sizedBox,
-                      sizedBox,
-                      const TitleSubtitleWidget(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const MsftLogoImage(),
+            Expanded(
+              child: SingleChildScrollView(
+                controller: scrollController,
+                physics: const BouncingScrollPhysics(),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    MSFTBanner(textTheme: textTheme),
+                    sizedBox,
+                    const ShopScreenPadding(
+                      child: TitleSubtitleWidget(
                         title: "Categories",
                         subtitle:
                             "Explore our wide range of categories and discover something new.",
                       ),
-                      SizedBox(
-                        height: 18.h,
-                        width: 100.w,
-                        child: SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: Row(
-                              children: categories
-                                  .map(
-                                    (e) => CategoryTile(
-                                      title: e.categoryName,
-                                      imageUrl: e.categoryImageUrl ?? "",
-                                    ),
-                                  )
-                                  .toList()),
-                        ),
+                    ),
+                    smallSizedBox,
+                    SizedBox(
+                      height: 18.h,
+                      width: 100.w,
+                      child: ListView(
+                        scrollDirection: Axis.horizontal,
+                        physics: const BouncingScrollPhysics(),
+                        padding: EdgeInsets.symmetric(horizontal: 2.w),
+                        children: categories
+                            .map(
+                              (e) => CategoryTile(
+                                catId: e.id,
+                                title: e.categoryName,
+                                imageUrl: e.categoryImageUrl ?? "",
+                              ),
+                            )
+                            .toList(),
                       ),
-                      sizedBox,
-                      const TitleSubtitleWidget(
+                    ),
+                    sizedBox,
+                    const ShopScreenPadding(
+                      child: TitleSubtitleWidget(
                         title: "Trending 🔥",
                         subtitle:
                             "Trending products are a curated collections of our best selling items",
                       ),
-                      GridView(
+                    ),
+                    smallSizedBox,
+                    ShopScreenPadding(
+                      child: GridView(
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -79,14 +94,33 @@ class ShopScreen extends StatelessWidget {
                             )
                             .toList(),
                       ),
-                    ],
-                  ),
+                    ),
+                    SizedBox(
+                      height: 20.h,
+                    ),
+                  ],
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
+    );
+  }
+}
+
+class ShopScreenPadding extends StatelessWidget {
+  const ShopScreenPadding({super.key, required this.child});
+
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(
+        horizontal: 3.w,
+      ),
+      child: child,
     );
   }
 }

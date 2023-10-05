@@ -12,7 +12,7 @@ class MSFTBanner extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 50.w,
+      height: 28.h,
       width: 100.w,
       decoration: const BoxDecoration(color: Colors.black),
       child: Column(
